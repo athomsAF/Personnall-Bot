@@ -1,0 +1,28 @@
+#general imports
+import json
+import time
+
+#requests package
+import requests
+
+#selenoium imports
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from webdriver_manager.firefox import GeckoDriverManager
+
+#usefull in wait commands
+from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.webdriver.support import expected_conditions as EC
+
+#data yahoo finance
+import yfinance as yf
+
+#url="""https://adfs.devinci.fr/adfs/ls/?SAMLRequest=pZJBb9swDIX%2FiqG7LVuJV0dIAqQNigbotqBJd9iloG1mESBLnkgn27%2BfY3dYdsmlJ4EUv6enB84JGtvqVcdH94I%2FOySOfjXWkR4uFqILTnsgQ9pBg6S50rvV52etklS3wbOvvBVXyG0CiDCw8U5Em%2FVCvN2pcqYwnWTZNP2kyrKYFlmu1CzPZ5Oint4dACaIZT4tRPQNA%2FXkQvRCPU7U4cYRg%2BO%2BlSoVZ2mssr1KdV7oPP8uonX%2FG%2BOAB%2BrI3JKWEuoDJTWejKtMcghDLS1JEa3%2BmnvwjroGww7DyVT4%2BvL8Dz%2Bfz4lF7yDUcY3xKOOQJZmmtXiJQDa%2B7iwm7bGVQ03jqWKoaOiCPcXUimj7HuC9cbVxP25nV45DpJ%2F2%2B228%2Fbrbi%2BX8oquHLMLygxYbZKiB4crhXF7rz8dd%2BdI726y33prqd%2FToQwN82%2FilY%2Br4MIxqDuDIoOM%2BcGv9%2BSEgMC4Ehw6FXI5P%2Fr%2BRyz8%3D&RelayState=https%3A%2F%2Fwww.leonard-de-vinci.net%2Flssop%2F6353080f7f2fe%2Fthomas.derudder%40edu.devinci.fr&SigAlg=http%3A%2F%2Fwww.w3.org%2F2001%2F04%2Fxmldsig-more%23rsa-sha256&Signature=W6xLSx6hwkKERlpkKZ8NfqUo071uF4xnlQjZglXmhhrSY%2Bvb5vgee%2BL%2Fing6HGLMvUp61sKRyM3NFVaV1YQ80PACuLcU8jk2RE0cjN8xKyp%2B0Fd8Df7AAqKv%2FGCTvr07lg%2FJZJK6%2B%2FvegH5LdnpuNRpqUrx2qkSaH43aNuKWt7PxeC1VfbC3Z2%2B%2B2L7gPkK4EE9cDFP7yW6WVW%2Fsg%2FFDtdNpjMLLUp3BIyrHmi3EGakiOsDatFZXGQameSXoBRn7VAmJ2dEBs65ZzOQC6iNltLQR4KnsOyuLXhyOnzgQkOx18jFQrrEXmNJKzEJS2nteYIHvO52xSZm4Z0h56pjoUA%3D%3D&username=thomas.derudder@edu.devinci.fr"""
+
+jsonurl='/home/brioche/Documents/Programme important/Personnal discord bot/esilv.json'
+json_file = open(jsonurl, 'r', encoding='utf-8')
+dataM=json.load(json_file)
+url="https://adfs.devinci.fr/adfs/ls/?SAMLRequest=pZJBb9swDIX%2FiqG7LcdwklZIAmQNhgXouqBJd%2BhloCV6ESBLnkgn27%2BfY7dYdsmlJ4EUv6enBy4IGteqdcdH%2F4y%2FOiROfjfOkxoulqKLXgUgS8pDg6RYq%2F3666Mqsly1MXDQwYkr5DYBRBjZBi%2BS7WYpfhR6VpXTuTamns7z%2B0rneTmdTaq5qXGqAYrZvMLybgalSL5jpJ5cil6ox4k63Hpi8Ny38qJIJ3lalIfJvcpLNSleRbLpf2M98EAdmVtSUoKpKTN4sl7brI5DLR1JkazfzT0ET12DcY%2FxZDW%2BPD%2F%2Bw8%2Fnc%2BYweIgmNZiOMh5Zkm1ah5cIZBNM5zBrj60cahrPIgVNQxfcKaVWJLu3AD9Zb6z%2FeTu7ahwi9eVw2KW7b%2FuDWC0uumrIIq4%2BaLFBBgMMVw4X8lp%2FMe7KU%2B9su9kFZ%2FWf5HOIDfBt45eONWk9jCqO4Mmi5z5w58L5ISIwLgXHDoVcjU%2F%2Bv5Grvw%3D%3D&RelayState=https%3A%2F%2Fwww.leonard-de-vinci.net%2Flssop%2F6356e1ac6ded1%2Fthomas.derudder%40edu.devinci.fr&SigAlg=http%3A%2F%2Fwww.w3.org%2F2001%2F04%2Fxmldsig-more%23rsa-sha256&Signature=iFqkusDQOeALLv6EaC04AE8mBxpfqiI1uVC%2BKmztaevYljARqrfqHDy%2FO7nTZZtPElTyhkYJTvB6eYv3UcZKXpmBqBZer0p2jObm0zhxavashFUh3AUITWZRILuXkpRqg5Tz35aNggcS78S73RqxAzdPDGcWBl5gtK5pJ2rcDTWWMW%2FICzz0Ae8Fx1M7wJw8Vln3T8386Ll2zghSQAL94mgwLh6u5OhBAeibe27birQ1siJvYG0yyrp%2Fn3kQbX0oS5fQ3ohOchJXVCKT%2Fqo76pQlxwal2AEh4HWE8F%2Fpl0G%2F5hgkvWYNPh2qyXNs%2FayygokIaq8rxCFHWYORYEKSoA%3D%3D&username=thomas.derudder@edu.devinci.fr"
+
+#launch geckodriver from arch linux
+driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
