@@ -24,6 +24,6 @@ async def setup_hook():
 async def on_ready():
     print("--- Ready ---")
     channel = bot.get_channel(1028731610251665462)
-    await channel.send("< ON >",delete_after=10)
+    await channel.send("Ready",delete_after=10)
 
 bot.run(DISCORD_KEY)
