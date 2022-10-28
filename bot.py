@@ -1,9 +1,12 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotnoctisenv
 import discord
 from discord.ext import commands
 import music
+import time
 
+
+time.sleep(10)
 load_dotenv()
 DISCORD_KEY= os.getenv("DISCORD_KEY")
 
