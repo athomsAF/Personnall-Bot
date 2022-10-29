@@ -14,9 +14,6 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 
-#data yahoo finance
-import yfinance as yf
-
 #url="""https://adfs.devinci.fr/adfs/ls/?SAMLRequest=pZJBb9swDIX%2FiqG7LVuJV0dIAqQNigbotqBJd9iloG1mESBLnkgn27%2BfY3dYdsmlJ4EUv6enB84JGtvqVcdH94I%2FOySOfjXWkR4uFqILTnsgQ9pBg6S50rvV52etklS3wbOvvBVXyG0CiDCw8U5Em%2FVCvN2pcqYwnWTZNP2kyrKYFlmu1CzPZ5Oint4dACaIZT4tRPQNA%2FXkQvRCPU7U4cYRg%2BO%2BlSoVZ2mssr1KdV7oPP8uonX%2FG%2BOAB%2BrI3JKWEuoDJTWejKtMcghDLS1JEa3%2BmnvwjroGww7DyVT4%2BvL8Dz%2Bfz4lF7yDUcY3xKOOQJZmmtXiJQDa%2B7iwm7bGVQ03jqWKoaOiCPcXUimj7HuC9cbVxP25nV45DpJ%2F2%2B228%2Fbrbi%2BX8oquHLMLygxYbZKiB4crhXF7rz8dd%2BdI726y33prqd%2FToQwN82%2FilY%2Br4MIxqDuDIoOM%2BcGv9%2BSEgMC4Ehw6FXI5P%2Fr%2BRyz8%3D&RelayState=https%3A%2F%2Fwww.leonard-de-vinci.net%2Flssop%2F6353080f7f2fe%2Fthomas.derudder%40edu.devinci.fr&SigAlg=http%3A%2F%2Fwww.w3.org%2F2001%2F04%2Fxmldsig-more%23rsa-sha256&Signature=W6xLSx6hwkKERlpkKZ8NfqUo071uF4xnlQjZglXmhhrSY%2Bvb5vgee%2BL%2Fing6HGLMvUp61sKRyM3NFVaV1YQ80PACuLcU8jk2RE0cjN8xKyp%2B0Fd8Df7AAqKv%2FGCTvr07lg%2FJZJK6%2B%2FvegH5LdnpuNRpqUrx2qkSaH43aNuKWt7PxeC1VfbC3Z2%2B%2B2L7gPkK4EE9cDFP7yW6WVW%2Fsg%2FFDtdNpjMLLUp3BIyrHmi3EGakiOsDatFZXGQameSXoBRn7VAmJ2dEBs65ZzOQC6iNltLQR4KnsOyuLXhyOnzgQkOx18jFQrrEXmNJKzEJS2nteYIHvO52xSZm4Z0h56pjoUA%3D%3D&username=thomas.derudder@edu.devinci.fr"""
 
 jsonurl='/home/brioche/Documents/Programme important/Personnal discord bot/esilv.json'

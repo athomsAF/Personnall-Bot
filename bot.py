@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import music
-import time
 
 load_dotenv()
 DISCORD_KEY= os.getenv("DISCORD_KEY")
@@ -12,8 +11,6 @@ bot = commands.Bot(command_prefix ="$", description = "On découvre python c nic
 
 @bot.event
 async def setup_hook():
-    load_dotenv()
-    DISCORD_KEY= os.getenv("DISCORD_KEY")
     cogs=[music]
     for i in cogs:
         await i.setup(bot)
